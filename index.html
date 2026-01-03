@@ -331,6 +331,8 @@
             flex-direction: column;
             gap: 10px;
             animation: slideRight 1s ease-out 0.3s backwards;
+            position: relative;
+            z-index: 1;
         }
 
         .license-photo {
@@ -367,6 +369,8 @@
             gap: 8px;
             font-family: 'Courier New', monospace;
             animation: slideLeft 1s ease-out 0.3s backwards;
+            position: relative;
+            z-index: 1;
         }
 
         .info-row {
@@ -443,43 +447,48 @@
         }
 
         .toaster-icon {
-            position: absolute;
-            top: 15px;
-            right: 250px;
-            font-size: 60px;
-            opacity: 0.3;
-            animation: float 3s ease-in-out infinite;
+            display: none;
         }
 
         .bear-icon {
             position: absolute;
-            top: 15px;
-            right: 30px;
-            font-size: 100px;
-            opacity: 0.85;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15));
-            animation: bounce 2s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 200px;
+            opacity: 0.08;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.05));
+            animation: none;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .star-icon {
             position: absolute;
-            top: 35px;
-            right: 110px;
-            font-size: 30px;
-            opacity: 0.85;
-            animation: spin 4s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-280%, -350%);
+            font-size: 50px;
+            opacity: 0.08;
+            animation: none;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .state-text {
             position: absolute;
-            top: 110px;
-            right: 35px;
-            font-size: 9px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 200%);
+            font-size: 16px;
             font-weight: bold;
-            color: #8B4513;
+            color: rgba(139, 69, 19, 0.15);
             text-align: center;
-            width: 90px;
-            letter-spacing: 1px;
+            width: auto;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .birthday-banner {
