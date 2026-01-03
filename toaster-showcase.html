@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breville Smart Mini - Vehicle Selection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background grid */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+            color: #00ff00;
+            font-size: 48px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #00ffff;
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .showcase-container {
+            display: grid;
+            grid-template-columns: 1fr 600px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* 3D Toaster Display */
+        .toaster-display {
+            grid-column: 2;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .toaster-platform {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .toaster-3d {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin3d 8s linear infinite;
+        }
+
+        @keyframes spin3d {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .toaster-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(255, 107, 53, 0.6));
+        }
+
+        .selection-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+            animation: pulse 2s infinite;
+        }
+
+        /* Stats Panels */
+        .stats-panel {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .stats-panel h3 {
+            color: #00ff00;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .stat-item {
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease-out backwards;
+        }
+
+        .stat-item:nth-child(2) { animation-delay: 0.1s; }
+        .stat-item:nth-child(3) { animation-delay: 0.2s; }
+        .stat-item:nth-child(4) { animation-delay: 0.3s; }
+        .stat-item:nth-child(5) { animation-delay: 0.4s; }
+        .stat-item:nth-child(6) { animation-delay: 0.5s; }
+
+        .stat-label {
+            color: #00ffff;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .stat-bar {
+            background: rgba(0, 255, 255, 0.2);
+            height: 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #00ffff;
+        }
+
+        .stat-fill {
+            background: linear-gradient(90deg, #00ff00 0%, #00ffff 100%);
+            height: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+            animation: fillBar 1s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: #00ffff;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .spec-value {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .select-button {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .select-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.8);
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+            50% { text-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00, 0 0 80px #00ff00; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #00ffff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 4s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-background"></div>
+
+    <div class="container">
+        <h1 class="title">Vehicle Selection</h1>
+        <p class="subtitle">Breville Smart Mini Toaster Oven</p>
+
+        <div class="showcase-container">
+            <!-- Left Stats Panel -->
+            <div class="stats-panel">
+                <h3>Performance Stats</h3>
+                <div class="stat-item">
+                    <div class="stat-label">🔥 Heat Power</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 95%;">95</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">⚡ Speed</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 88%;">88</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">🎯 Precision</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 92%;">92</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">⭐ Versatility</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 85%;">85</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">💎 Style</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 100%;">100</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center 3D Display -->
+            <div class="toaster-display">
+                <div class="selection-badge">✓ SELECTED</div>
+                <div class="toaster-platform">
+                    <div class="toaster-3d">
+                        <img src="https://assets.breville.com/cdn-cgi/image/width=1300,format=auto/BOV450/BOV450XL.jpg?pdp"
+                             alt="Breville Smart Mini"
+                             class="toaster-image">
+                    </div>
+                </div>
+                <button class="select-button" onclick="window.close()">✓ Confirmed</button>
+            </div>
+
+            <!-- Right Specs Panel -->
+            <div class="stats-panel">
+                <h3>Technical Specs</h3>
+                <div class="spec-item">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-value">BOV450XL</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Power Output</span>
+                    <span class="spec-value">1800W</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Dimensions</span>
+                    <span class="spec-value">16" × 13.6" × 8.8"</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Interior</span>
+                    <span class="spec-value">0.45 cu ft</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Capacity</span>
+                    <span class="spec-value">4 Slices / 11" Pizza</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Elements</span>
+                    <span class="spec-value">4 Quartz Element IQ®</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Temperature</span>
+                    <span class="spec-value">120°F - 500°F</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Functions</span>
+                    <span class="spec-value">8 Presets</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Display</span>
+                    <span class="spec-value">LCD Backlit</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Material</span>
+                    <span class="spec-value">Brushed Stainless Steel</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">License Class</span>
+                    <span class="spec-value">T - TOASTER</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Rarity</span>
+                    <span class="spec-value">⭐⭐⭐⭐⭐ LEGENDARY</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.animationDelay = Math.random() * 4 + 's';
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    document.body.appendChild(particle);
+                }, i * 100);
+            }
+        }
+
+        createParticles();
+
+        // Play selection sound
+        function playSelectSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            function playTone(freq, startTime, duration) {
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+
+                osc.frequency.value = freq;
+                osc.type = 'square';
+
+                gain.gain.setValueAtTime(0.1, audioContext.currentTime + startTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration);
+
+                osc.start(audioContext.currentTime + startTime);
+                osc.stop(audioContext.currentTime + startTime + duration);
+            }
+
+            playTone(800, 0, 0.1);
+            playTone(1000, 0.1, 0.15);
+        }
+
+        playSelectSound();
+    </script>
+</body>
+</html>
