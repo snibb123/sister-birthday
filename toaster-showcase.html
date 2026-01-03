@@ -504,32 +504,43 @@
 
         createParticles();
 
-        // Play selection sound
-        function playSelectSound() {
+        // Play engine rev sound (vroom vroom!)
+        function playEngineSound() {
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-            function playTone(freq, startTime, duration) {
+            function createEngineRev() {
                 const osc = audioContext.createOscillator();
                 const gain = audioContext.createGain();
+                const filter = audioContext.createBiquadFilter();
 
-                osc.connect(gain);
+                osc.connect(filter);
+                filter.connect(gain);
                 gain.connect(audioContext.destination);
 
-                osc.frequency.value = freq;
-                osc.type = 'square';
+                osc.type = 'sawtooth';
+                filter.type = 'lowpass';
+                filter.frequency.value = 1000;
 
-                gain.gain.setValueAtTime(0.1, audioContext.currentTime + startTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + startTime + duration);
+                // Engine rev up
+                osc.frequency.setValueAtTime(80, audioContext.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.3);
+                osc.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.6);
 
-                osc.start(audioContext.currentTime + startTime);
-                osc.stop(audioContext.currentTime + startTime + duration);
+                // Volume envelope
+                gain.gain.setValueAtTime(0, audioContext.currentTime);
+                gain.gain.linearRampToValueAtTime(0.15, audioContext.currentTime + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
+
+                osc.start(audioContext.currentTime);
+                osc.stop(audioContext.currentTime + 0.8);
             }
 
-            playTone(800, 0, 0.1);
-            playTone(1000, 0.1, 0.15);
+            // Play two engine revs
+            createEngineRev();
+            setTimeout(createEngineRev, 900);
         }
 
-        playSelectSound();
+        playEngineSound();
     </script>
 </body>
 </html>
