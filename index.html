@@ -244,22 +244,12 @@
             justify-content: center;
         }
 
-        .toaster-image-container {
+        .toaster-caption-container {
             animation: slideInFromRight 1.2s ease-out 0.8s backwards;
             text-align: center;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .toaster-image {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: float 3s ease-in-out infinite;
+            justify-content: center;
+            margin: 30px 0;
         }
 
         .toaster-caption {
@@ -272,7 +262,7 @@
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-            max-width: 300px;
+            max-width: 400px;
             transition: all 0.3s ease;
         }
 
@@ -280,6 +270,23 @@
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(255, 107, 53, 0.8);
             background: linear-gradient(135deg, #ff7b45 0%, #ffab3e 100%);
+        }
+
+        .toaster-image-container {
+            animation: slideInFromRight 1.2s ease-out 1.2s backwards;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .toaster-image {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
         }
 
         .license-container {
@@ -736,13 +743,23 @@
                 padding: 15px;
             }
 
-            .toaster-image-container {
-                max-width: 100%;
+            .toaster-caption-container {
+                margin: 20px 0;
             }
 
             .toaster-caption {
                 font-size: 16px;
                 padding: 10px 15px;
+                max-width: 90%;
+            }
+
+            .toaster-image-container {
+                max-width: 100%;
+                margin: 20px 0;
+            }
+
+            .toaster-image {
+                max-width: 90%;
             }
 
             .license-body {
@@ -980,10 +997,14 @@
         </div>
         </div>
 
+        <!-- Orange Click Box -->
+        <div class="toaster-caption-container">
+            <p class="toaster-caption" onclick="window.open('toaster-showcase.html', '_blank')" style="cursor: pointer;">👆 CLICK HERE: Your New Breville Smart Mini! 🎁</p>
+        </div>
+
         <!-- Toaster Image -->
         <div class="toaster-image-container">
             <img src="https://assets.breville.com/cdn-cgi/image/width=1300,format=auto/BOV450/BOV450XL.jpg?pdp" alt="Breville Smart Mini Toaster Oven" class="toaster-image">
-            <p class="toaster-caption" onclick="window.open('toaster-showcase.html', '_blank')" style="cursor: pointer;">👆 CLICK HERE: Your New Breville Smart Mini! 🎁</p>
         </div>
     </div>
 
