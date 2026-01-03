@@ -73,14 +73,15 @@
 
         .showcase-container {
             display: grid;
-            grid-template-columns: 1fr 600px 1fr;
+            grid-template-columns: 600px 1fr;
             gap: 30px;
             align-items: start;
+            justify-content: center;
         }
 
         /* 3D Toaster Display */
         .toaster-display {
-            grid-column: 2;
+            grid-column: 1;
             background: rgba(0, 0, 0, 0.7);
             border: 3px solid #00ffff;
             border-radius: 20px;
@@ -418,41 +419,6 @@
         <p class="subtitle">Breville Smart Mini Toaster Oven</p>
 
         <div class="showcase-container">
-            <!-- Left Stats Panel -->
-            <div class="stats-panel">
-                <h3>Performance Stats</h3>
-                <div class="stat-item">
-                    <div class="stat-label">🔥 Heat Power</div>
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: 95%;">95</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">⚡ Speed</div>
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: 88%;">88</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">🎯 Precision</div>
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: 92%;">92</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">⭐ Versatility</div>
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: 85%;">85</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">💎 Style</div>
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: 100%;">100</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Center 3D Display -->
             <div class="toaster-display">
                 <div class="selection-badge">✓ SELECTED</div>
