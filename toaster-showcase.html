@@ -18,10 +18,61 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 40px 20px;
+            padding: 100px 20px 40px;
             overflow-y: auto;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* DMV Header Bar */
+        .dmv-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1e5a96 0%, #2874b5 100%);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dmv-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dmv-header-logo {
+            font-size: 24px;
+        }
+
+        .dmv-header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: Arial, sans-serif;
+        }
+
+        .dmv-header-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .dmv-nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
+
+        .dmv-nav-link:hover {
+            color: white;
         }
 
         /* Animated background grid */
@@ -53,22 +104,23 @@
 
         .title {
             text-align: center;
-            color: #00ff00;
-            font-size: 48px;
+            color: white;
+            font-size: 42px;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
-            animation: glow 2s ease-in-out infinite;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .subtitle {
             text-align: center;
-            color: #00ffff;
-            font-size: 24px;
+            color: #f7931e;
+            font-size: 20px;
             margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
         }
 
         .showcase-container {
@@ -304,6 +356,22 @@
         }
 
         @media (max-width: 768px) {
+            .dmv-header {
+                padding: 10px 15px;
+            }
+
+            .dmv-header-title {
+                font-size: 14px;
+            }
+
+            .dmv-header-nav {
+                display: none;
+            }
+
+            body {
+                padding: 80px 20px 40px;
+            }
+
             .title {
                 font-size: 32px;
                 letter-spacing: 3px;
@@ -412,6 +480,20 @@
     </style>
 </head>
 <body>
+    <!-- DMV Header Bar -->
+    <div class="dmv-header">
+        <div class="dmv-header-left">
+            <div class="dmv-header-logo">🍞</div>
+            <div class="dmv-header-title">Department of Toaster Vehicles</div>
+        </div>
+        <div class="dmv-header-nav">
+            <span class="dmv-nav-link">Home</span>
+            <span class="dmv-nav-link">Licenses</span>
+            <span class="dmv-nav-link">Registration</span>
+            <span class="dmv-nav-link">Services</span>
+        </div>
+    </div>
+
     <div class="grid-background"></div>
 
     <div class="container">
