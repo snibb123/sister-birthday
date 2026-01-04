@@ -229,13 +229,76 @@
             }
         }
 
+        /* DMV Header Bar */
+        .dmv-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1e5a96 0%, #2874b5 100%);
+            padding: 15px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .dmv-header.visible {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dmv-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dmv-header-logo {
+            font-size: 24px;
+        }
+
+        .dmv-header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .dmv-header-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .dmv-nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dmv-nav-link:hover {
+            color: white;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
         /* License Container Styles */
         .license-wrapper {
             display: none;
             animation: zoomIn 0.8s ease-out;
             max-width: 850px;
             margin: 0 auto;
-            padding-top: 80px;
+            padding-top: 140px;
         }
 
         .license-wrapper.visible {
@@ -244,7 +307,7 @@
             gap: 10px;
             align-items: center;
             justify-content: flex-start;
-            padding-top: 80px;
+            padding-top: 140px;
         }
 
         .toaster-caption-container {
@@ -677,6 +740,18 @@
 
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
+            .dmv-header {
+                padding: 10px 15px;
+            }
+
+            .dmv-header-title {
+                font-size: 14px;
+            }
+
+            .dmv-header-nav {
+                display: none;
+            }
+
             .start-title {
                 font-size: 28px;
             }
@@ -877,6 +952,20 @@
     </style>
 </head>
 <body>
+    <!-- DMV Header Bar -->
+    <div class="dmv-header" id="dmvHeader">
+        <div class="dmv-header-left">
+            <div class="dmv-header-logo">🍞</div>
+            <div class="dmv-header-title">Department of Toaster Vehicles</div>
+        </div>
+        <div class="dmv-header-nav">
+            <span class="dmv-nav-link">Home</span>
+            <span class="dmv-nav-link">Licenses</span>
+            <span class="dmv-nav-link">Registration</span>
+            <span class="dmv-nav-link">Services</span>
+        </div>
+    </div>
+
     <!-- Password Screen -->
     <div class="password-screen" id="passwordScreen">
         <h1 class="password-title">🔒 Access Required</h1>
@@ -1057,6 +1146,7 @@
         function revealLicense() {
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('licenseWrapper').classList.add('visible');
+            document.getElementById('dmvHeader').classList.add('visible');
             playTrumpetSound();
             createConfetti();
         }
